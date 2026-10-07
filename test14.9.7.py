@@ -3,6 +3,10 @@
 import urllib.request, urllib.parse, urllib.error
 import ssl
 import json
+import os
+import load_dotenv()
+
+x_rapidapi_key = os.environ.get('x_rapidapi_key')
 
 ctx = ssl.create_default_context()     # Crea un contexto SSL por defecto
 ctx.check_hostname = False            # Desactiva la verificación del nombre del host en el certificado
@@ -16,12 +20,11 @@ while True:
     break
     
 base_url = "https://wordsapiv1.p.rapidapi.com/words/"
-api_key = 'efa824597dmshac8d605093494d5p169b3bjsn24f0b7f4d5a3'
     
 request_protocol = base_url + word
 req = urllib.request.Request(request_protocol)
 
-req.add_header('X-RapidAPI-Key', api_key)
+req.add_header('X-RapidAPI-Key', x_rapidapi_key)
 req.add_header("X-RapidAPI-Host", "wordsapiv1.p.rapidapi.com")
 req.add_header("Accept",          "application/json")
 
