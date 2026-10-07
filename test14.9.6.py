@@ -5,7 +5,6 @@
 # Se incluye una API key y se construye la URL en función del 'symbol' que ingrese el usuario.
 # ---------------------------------------------------------------------------
 
-# private API KEY: tuRMJ1YWekWubi14CSu4jKaLYcEh2dBn   # Clave para autenticar el acceso al API
 # Base API endpoint: https://api.tradewatch.io/      # Punto base de acceso al servicio
 
 # 1) Importamos módulos necesarios para trabajar con JSON y con solicitudes HTTP/HTTPS
@@ -13,10 +12,17 @@ import json                                        # Módulo para trabajar con d
 import urllib.request, urllib.parse, urllib.error  # Módulos para hacer solicitudes y manejar errores
 import ssl                                         # Módulo para manejar conexiones seguras (SSL/TLS)
 
+import os
+import load_dotenv()
+
+api-key = os.environ.get('api_key')
+
 # 2) Configuramos el "contexto SSL" para manejar conexiones HTTPS sin verificar el certificado (no recomendable en prod)
 ctx = ssl.create_default_context()     # Crea un contexto SSL por defecto
 ctx.check_hostname = False            # Desactiva la verificación del nombre del host en el certificado
 ctx.verify_mode = ssl.CERT_NONE       # Desactiva la verificación de la validez del certificado
+
+
 
 # 3) Usamos un bucle "while True" para solicitar repetidamente un símbolo (commodity)
 #    hasta que el usuario ingrese algo válido (no vacío).
@@ -33,7 +39,7 @@ request_protocol = f'https://api.tradewatch.io/commodities/symbols/{symbol}'
 
 # 5) Creamos un objeto 'Request' y configuramos las cabeceras necesarias para llamar al API
 req = urllib.request.Request(request_protocol)                  # Creamos la solicitud con la URL ya construida
-req.add_header('api-key', 'tuRMJ1YWekWubi14CSu4jKaLYcEh2dBn')    # Agregamos la clave de acceso al API
+req.add_header('api-key', api-key)    # Agregamos la clave de acceso al API
 req.add_header('Accept', 'application/json')                    # Recomendamos que el servidor responda en formato JSON
 
 # 6) Imprimimos la URL generada (opcional; útil para verificar que sea correcta)
