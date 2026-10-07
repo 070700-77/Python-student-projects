@@ -3,7 +3,7 @@ import json
 import ssl
 import sys
 
-API_KEY = "911a3c8e59c9408286053ac595221028"          # Paso 1
+API_KEY = "911a3c8e59c9408286053ac595221028"          # Paso 1 / PUBLIC API KEY
 BASE_URL = "https://randommer.io/api/Name"
 
 # 1️⃣  Pedimos y validamos opciones
