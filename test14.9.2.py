@@ -9,13 +9,17 @@ import urllib.error    # Maneja errores al hacer peticiones a internet
 import json            # Nos permite trabajar con datos en formato JSON
 import ssl             # Permite manejar conexiones HTTPS seguras
 
+import os
+import load_dotenv()
+
+load_dotenv()
+api_key = os.environ.get('api_key')
+
 # 🔹 Crear un "contexto SSL" para evitar errores con certificados al abrir URLs seguras (https)
 ctx = ssl.create_default_context()    # Crea un contexto seguro para conexiones
 ctx.check_hostname = False            # No revisa el nombre del servidor en el certificado
 ctx.verify_name = ssl.CERT_NONE       # Ignora problemas de validez del certificado SSL
 
-# 🔹 Clave API para acceder al servicio (puedes registrarte gratis en financialmodelingprep.com para obtener la tuya)
-api_key = "0I5CYmlQtoykUQIDBPQZHZPEwhvH1PqL"
 
 # 🔹 Bucle para pedir al usuario que escriba la URL base de la API
 while True:
