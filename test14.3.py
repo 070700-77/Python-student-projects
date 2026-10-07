@@ -4,6 +4,8 @@
 import urllib.request    # Permite abrir URLs y leer contenido desde internet
 import urllib.parse      # Sirve para codificar parámetros y crear URLs válidas
 import urllib.error      # Permite capturar errores si la solicitud a una URL falla
+import os
+import load_dotenv()
 
 from bs4 import BeautifulSoup  # Se usa para analizar HTML o XML, aunque aquí no lo estamos usando realmente
 
@@ -13,6 +15,10 @@ import time             # Permite acceder a la hora actual (timestamps)
 
 import ssl              # Permite manejar conexiones HTTPS (seguras)
 
+load_dotenv()
+
+marvel_key = os.environ.get('marvel_key')
+
 # 🔹 Configuración SSL para evitar errores por certificados de seguridad no válidos
 ctx = ssl.create_default_context()     # Crea un "contexto seguro" para conexiones HTTPS
 ctx.check_hostname = False             # Desactiva la verificación del nombre del servidor
@@ -20,7 +26,7 @@ ctx.verify_name = ssl.CERT_NONE        # Ignora cualquier error de verificación
 
 # 🔹 Claves necesarias para acceder a la API de Marvel (debes registrarte para obtener las tuyas)
 public_key = "8e73048904bf7ea3a8dfdc24001aae69"     # Tu clave pública (se puede mostrar)
-private_key = 'd0b18acc2c21858750b64645f5676aae503d167e' # Tu clave privada (secreta y personal)
+private_key = marvel_key # Tu clave privada (secreta y personal)
 
 # 🔹 Pedimos al usuario que ingrese el link base de la API que desea consultar
 while True:
